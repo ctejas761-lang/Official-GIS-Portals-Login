@@ -1,0 +1,292 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="description" content="Sign in to access the Gondia Forest Division GIS Dashboard.">
+    <title>Sign in | Gondia Forest Division GIS Dashboard</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        html {
+            overflow-x: clip;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #e8e8e8 0%, #f5f5f5 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            padding: 24px;
+            overflow-x: clip;
+        }
+
+        .login-container {
+            width: min(450px, calc(100vw - 32px));
+            min-height: min(450px, calc(100svh - 48px));
+            display: flex;
+            justify-content: center;
+            align-items: center;
+        }
+
+        .login-box {
+            background: rgba(255, 255, 255, 0.96);
+            padding: clamp(24px, 7vw, 40px);
+            border-radius: 20px;
+            width: min(420px, calc(100vw - 32px));
+            min-height: min(460px, calc(100svh - 48px));
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+            box-shadow: 0 12px 36px rgba(36, 31, 32, 0.14);
+        }
+
+        .department-logo {
+            display: block;
+            width: 88px;
+            height: 88px;
+            margin: 0 auto 18px;
+            object-fit: contain;
+        }
+
+        h1 {
+            color: #8b1538;
+            margin-bottom: 8px;
+            font-size: 28px;
+            font-weight: 600;
+        }
+
+        .login-intro,
+        .login-help {
+            color: #4f4548;
+            line-height: 1.5;
+        }
+
+        .login-intro {
+            margin-bottom: 24px;
+        }
+
+        .login-help {
+            margin-bottom: 16px;
+            font-size: 14px;
+        }
+
+        .input-group {
+            margin-bottom: 20px;
+        }
+
+        label {
+            display: block;
+            margin-bottom: 7px;
+            color: #332b2e;
+            font-size: 14px;
+            font-weight: 600;
+        }
+
+        input {
+            width: 100%;
+            padding: 12px 20px;
+            border: 2px solid #8b1538;
+            border-radius: 25px;
+            font-size: 14px;
+            transition: all 0.3s ease;
+            background: white;
+        }
+
+        input:focus {
+            border-color: #8b1538;
+            outline: 3px solid #007c89;
+            outline-offset: 2px;
+        }
+
+        .sign-in-btn {
+            width: 100%;
+            padding: 12px;
+            background: linear-gradient(to right, #8b1538, #006a73);
+            border: none;
+            border-radius: 25px;
+            color: white;
+            font-size: 16px;
+            font-weight: 600;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            margin-top: 10px;
+        }
+
+        .sign-in-btn:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 5px 20px rgba(139, 21, 56, 0.3);
+        }
+
+        .sign-in-btn:focus-visible {
+            outline: 3px solid #007c89;
+            outline-offset: 3px;
+        }
+
+        .sign-in-btn:active {
+            transform: translateY(0);
+        }
+
+        .sign-in-btn:disabled {
+            cursor: wait;
+            opacity: 0.8;
+            transform: none;
+        }
+
+        .login-status {
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            margin-top: 14px;
+            color: #4f4548;
+            font-size: 14px;
+        }
+
+        .login-status[hidden] {
+            display: none;
+        }
+
+        .loading-spinner {
+            width: 18px;
+            height: 18px;
+            border: 3px solid rgba(139, 21, 56, 0.2);
+            border-top-color: #8b1538;
+            border-radius: 50%;
+            animation: loading-spin 0.8s linear infinite;
+        }
+
+        @keyframes loading-spin {
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        @media (max-width: 480px) {
+            body {
+                padding: 16px;
+            }
+
+            .login-container {
+                min-height: min(400px, calc(100svh - 32px));
+            }
+
+            .login-box {
+                padding: 28px 24px;
+            }
+
+        }
+
+        @media (max-height: 480px) {
+            body {
+                padding: 12px;
+            }
+
+            .login-container {
+                min-height: 0;
+            }
+
+            .login-box {
+                padding: 24px;
+                min-height: 0;
+            }
+
+            .department-logo {
+                width: 36px;
+                height: 36px;
+                margin-bottom: 6px;
+            }
+
+            h1 {
+                font-size: 24px;
+            }
+
+            input,
+            .sign-in-btn {
+                padding-top: 10px;
+                padding-bottom: 10px;
+            }
+
+            .login-intro {
+                margin-bottom: 14px;
+            }
+
+            .login-help {
+                margin-bottom: 10px;
+            }
+
+            .input-group {
+                margin-bottom: 14px;
+            }
+        }
+
+        @media (prefers-reduced-motion: reduce) {
+            *,
+            *::before,
+            *::after {
+                scroll-behavior: auto !important;
+                animation-duration: 0.01ms !important;
+                animation-iteration-count: 1 !important;
+                transition-duration: 0.01ms !important;
+            }
+
+            .loading-spinner {
+                animation-duration: 1.5s !important;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <main class="login-container">
+        <section class="login-box" aria-labelledby="loginHeading">
+            <img class="department-logo" src="logo/Maha_Logo.jpeg"
+                alt="Maharashtra Forest Department emblem" width="96" height="96">
+            <h1 id="loginHeading">Gondia Forest Division </h1>
+            <form id="loginForm" aria-describedby="loginHelp">
+                <div class="input-group">
+                    <label for="username">Username</label>
+                    <input type="text" id="username" name="username" placeholder="Enter your username"
+                        autocomplete="username" autocapitalize="none" spellcheck="false" required>
+                </div>
+                <div class="input-group">
+                    <label for="password">Password</label>
+                    <input type="password" id="password" name="password" placeholder="Enter your password"
+                        autocomplete="current-password" required>
+                </div>
+                <button type="submit" class="sign-in-btn" id="signInButton">
+                    <span id="signInLabel">Sign in</span>
+                </button>
+                <p class="login-status" id="loginStatus" role="status" aria-live="polite" hidden>
+                    <span class="loading-spinner" aria-hidden="true"></span>
+                    Opening GIS portal…
+                </p>
+            </form>
+        </section>
+    </main>
+    <script>
+        const loginForm = document.getElementById("loginForm");
+        const signInButton = document.getElementById("signInButton");
+        const signInLabel = document.getElementById("signInLabel");
+        const loginStatus = document.getElementById("loginStatus");
+        const dashboardUrl = "https://gondiaforestdivisiongisdashboard.vercel.app/";
+
+        loginForm.addEventListener("submit", (event) => {
+            event.preventDefault();
+            signInButton.disabled = true;
+            signInLabel.textContent = "Opening GIS portal…";
+            loginStatus.hidden = false;
+            window.location.assign(dashboardUrl);
+        });
+    </script>
+    <!-- Copyright © 2026 tejaschavan All rights reserved. -->
+</body>
+</html>
